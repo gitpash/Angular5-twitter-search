@@ -1,22 +1,25 @@
-<table>
-  <thead>
-    <tr>
-      <th width="40%">Tweet</th>
-      <th width="10%">Likes</th>
-      <th width="10%">Replies</th>
-      <th width="5%">Retweets</th>
-      <th width="15%">Hashtags</th>
-      <th width="15%">Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let tweet of fetchedTweets" class="row">
-      <td class="">{{ tweet.text || "-" }}</td>
-      <td class="">{{ tweet.likes || "-" }}</td>
-      <td class="">{{ tweet.replies || "-" }}</td>
-      <td class="">{{ tweet.retweets || "-" }}</td>
-      <td class="">{{ tweet.hashtags || "-" }}</td>
-      <td class="">{{ tweet.date || "-" }}</td>
-    </tr>
-  </tbody>
-</table>
+<!-- <table> -->
+<!-- <thead> -->
+<div>
+  <div class="container">
+    <span class="tweetCol">Tweet</span>
+    <span class="tweetCol">Likes</span>
+    <span class="tweetCol">Replies</span>
+    <span class="tweetCol">Retweets</span>
+    <span class="tweetCol">Hashtags</span>
+    <span class="tweetCol">Date</span>
+  </div>
+  <!-- </thead> -->
+  <!-- <tbody> -->
+  <div *ngFor="let tweet of fetchedTweets" class="container">
+    <span class="">{{ formatTweets(tweet.text) || "-" }}</span>
+    <span class="">{{ tweet.likes || "-" }}</span>
+    <span class="">{{ tweet.replies || "-" }}</span>
+    <span class="">{{ tweet.retweets || "-" }}</span>
+    <span class="">{{ formatTags(tweet.hashtags) || "-" }}</span>
+    <span class="">{{ tweet.date || "-" }}</span>
+  </div>
+</div>
+
+<!-- </tbody> -->
+<!-- </table> -->

@@ -1,0 +1,11 @@
+.container {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr 3fr 2fr;
+  grid-template-rows: auto;
+
+  span {
+    text-align: center;
+    overflow: hidden;
+    min-width: 0;
+  }
+}

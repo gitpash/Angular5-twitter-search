@@ -12,4 +12,12 @@ export class TweetsTableComponent implements OnInit {
   ngOnInit() {
     console.log("f", this.fetchedTweets);
   }
+  formatTweets(tweet: string) {
+    if (tweet.length < 50) return tweet;
+    return `${tweet.substr(0, 50)}...`;
+  }
+  formatTags(tags: string[]) {
+    if (tags.length <= 2) return tags;
+    return tags.slice(0, 1);
+  }
 }
