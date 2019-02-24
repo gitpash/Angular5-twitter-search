@@ -7,9 +7,10 @@ import { AppComponent } from "./app.component";
 import { HashtagComponent } from "./hashtag/hashtag.component";
 import { UserComponent } from "./user/user.component";
 import { SearchComponent } from './search/search.component';
+import { TweetsTableComponent } from './tweets-table/tweets-table.component';
 
 @NgModule({
-  declarations: [AppComponent, HashtagComponent, UserComponent, SearchComponent],
+  declarations: [AppComponent, HashtagComponent, UserComponent, SearchComponent, TweetsTableComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]

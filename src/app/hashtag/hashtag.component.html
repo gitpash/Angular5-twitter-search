@@ -1,1 +1,4 @@
-<app-search label="Hashtag"></app-search>
+<app-search (inputChange)="inputSearch($event)" label="Hashtag"></app-search>
+<div>
+  <app-tweets-table [fetchedTweets]="allTweets"></app-tweets-table>
+</div>

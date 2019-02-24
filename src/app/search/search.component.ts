@@ -1,5 +1,4 @@
-import { Component, OnInit, EventEmitter } from "@angular/core";
-import { TweetsService } from "../tweets.service";
+import { Component, OnInit, EventEmitter, Output } from "@angular/core";
 
 @Component({
   selector: "app-search",
@@ -7,21 +6,14 @@ import { TweetsService } from "../tweets.service";
   styleUrls: ["./search.component.scss"]
 })
 export class SearchComponent implements OnInit {
-  constructor(private tweetsService: TweetsService) {}
+  @Output() inputChange = new EventEmitter<string>();
+  constructor() {}
 
   ngOnInit() {}
 
   onInput(event: any): void {
     console.log(event.target.value);
-
-    this.tweetsService.getTweetsByHashtag(event.target.value).subscribe(
-      res => {
-        console.log("res", res);
-      },
-      error => {
-        console.log("fetch tweets error", error);
-        // this.tweetStore$.next([]);
-      }
-    );
+    // emitting event into parent
+    this.inputChange.emit(event.target.value);
   }
 }
