@@ -11,7 +11,19 @@
   </div>
   <!-- </thead> -->
   <!-- <tbody> -->
-  <div *ngFor="let tweet of fetchedTweets" class="container">
+  <div
+    *ngFor="
+      let tweet of (fetchedTweets
+        | paginate
+          : {
+              id: 'hashtagSearch',
+              itemsPerPage: maxPage,
+              currentPage: currentPage
+            });
+      let idn = index
+    "
+    class="container"
+  >
     <span class="">{{ formatTweets(tweet.text) || "-" }}</span>
     <span class="">{{ tweet.likes || "-" }}</span>
     <span class="">{{ tweet.replies || "-" }}</span>
