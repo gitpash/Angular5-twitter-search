@@ -6,9 +6,10 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HashtagComponent } from "./hashtag/hashtag.component";
 import { UserComponent } from "./user/user.component";
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
-  declarations: [AppComponent, HashtagComponent, UserComponent],
+  declarations: [AppComponent, HashtagComponent, UserComponent, SearchComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]

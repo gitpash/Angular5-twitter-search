@@ -8,15 +8,8 @@ import { TweetsService } from "../tweets.service";
 })
 export class HashtagComponent implements OnInit {
   allTweets = [];
+
   constructor(private tweetsService: TweetsService) {}
 
-  ngOnInit() {
-    this.getTweets();
-  }
-  getTweets(): void {
-    this.tweetsService.getTweets().subscribe(tweets => {
-      this.allTweets = tweets;
-      console.log("allTweets", this.allTweets);
-    });
-  }
+  ngOnInit() {}
 }
