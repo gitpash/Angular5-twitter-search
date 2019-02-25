@@ -32,7 +32,8 @@
 .my-pagination /deep/ .ngx-pagination .pagination-next.disabled::after {
   content: "";
 }
-/** hide left nav arrow for 1st page */
-.my-pagination /deep/ .ngx-pagination .pagination-previous.disabled span {
+/** hide left nav arrow for 1st page & right arrow on last */
+.my-pagination /deep/ .ngx-pagination .pagination-previous.disabled span,
+.my-pagination /deep/ .ngx-pagination .pagination-next.disabled span {
   display: none;
 }

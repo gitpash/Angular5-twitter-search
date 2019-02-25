@@ -10,9 +10,7 @@ export class TweetsTableComponent implements OnInit {
   @Input() fetchedTweets: [];
   constructor() {}
 
-  ngOnInit() {
-    console.log("f", this.fetchedTweets);
-  }
+  ngOnInit() {}
   formatTweets(tweet: string) {
     if (tweet.length < 50) return tweet;
     return `${tweet.substr(0, 50)}...`;

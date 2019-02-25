@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Subject } from "rxjs";
 import { switchMap, debounceTime, distinctUntilChanged } from "rxjs/operators";
+import { NgxSpinnerService } from "ngx-spinner";
 import { TweetsService } from "../tweets.service";
+import { Tweet } from "../types";
 
 @Component({
   selector: "app-hashtag",
@@ -9,25 +11,17 @@ import { TweetsService } from "../tweets.service";
   styleUrls: ["./hashtag.component.scss"]
 })
 export class HashtagComponent implements OnInit {
-  allTweets = [];
-  lastPage: number;
-  onePageTweets = [];
-  chosenPage: number;
+  allTweets: Tweet[] = [];
 
-  constructor(private tweetsService: TweetsService) {}
+  constructor(
+    private tweetsService: TweetsService,
+    private spinner: NgxSpinnerService
+  ) {}
+
   private searchSubj = new Subject<string>();
 
   inputSearch(query: string): void {
-    console.log("query!!", query);
     this.searchSubj.next(query);
-  }
-
-  calcPages(next: number): void {
-    this.chosenPage = next;
-    this.onePageTweets = this.allTweets.slice(
-      (next - 1) * 10,
-      (next - 1) * 10 + 10
-    );
   }
 
   ngOnInit(): void {
@@ -35,21 +29,21 @@ export class HashtagComponent implements OnInit {
       .pipe(
         debounceTime(300), // default debounce
         distinctUntilChanged(),
-        switchMap((query: string) =>
-          this.tweetsService.getTweetsByHashtag(query)
-        )
+        switchMap((query: string) => {
+          if (!query) {
+            this.allTweets = [];
+            return;
+          }
+          /** start spinner after debounce */
+          this.spinner.show();
+          return this.tweetsService.getTweetsByHashtag(query);
+        })
       )
       .subscribe(tweets => {
+        /** spinner stop on response */
+        this.spinner.hide();
+
         this.allTweets = tweets;
-        this.lastPage = Math.ceil(tweets.length / 10);
-        console.log("tweets", this.allTweets);
-        console.log("lastp", this.lastPage);
-        if (tweets.length <= 10) {
-          this.onePageTweets = tweets;
-          this.chosenPage = 0;
-        } else {
-          this.calcPages(1);
-        }
       });
   }
 }

@@ -1,21 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-
-// TODO: move to interfaces
-export interface Tweet {
-  account: {
-    fullname: string;
-    href: string;
-    id: number;
-  };
-  date: string;
-  hashtags: string[];
-  likes: number;
-  replies: number;
-  retweets: number;
-  text: string;
-}
+import { Tweet } from "./types";
 
 @Injectable({
   providedIn: "root"
