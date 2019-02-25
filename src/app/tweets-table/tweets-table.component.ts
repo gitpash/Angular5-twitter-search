@@ -6,6 +6,7 @@ import { Component, OnInit, Input } from "@angular/core";
   styleUrls: ["./tweets-table.component.scss"]
 })
 export class TweetsTableComponent implements OnInit {
+  p: number = 1;
   @Input() fetchedTweets: [];
   constructor() {}
 

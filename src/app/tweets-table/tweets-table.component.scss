@@ -2,10 +2,23 @@
   display: grid;
   grid-template-columns: 3fr 1fr 1fr 1fr 3fr 2fr;
   grid-template-rows: auto;
+  grid-column-gap: 2em;
 
   span {
     text-align: center;
     overflow: hidden;
     min-width: 0;
   }
+}
+
+/** css hack to get rid of built-in << >> symbol, can't be disabled by pag props */
+.my-pagination /deep/ .ngx-pagination .pagination-previous a::before,
+.my-pagination /deep/ .ngx-pagination .pagination-previous.disabled::before,
+.my-pagination /deep/ .ngx-pagination .pagination-next a::after,
+.my-pagination /deep/ .ngx-pagination .pagination-next.disabled::after { 
+  content: ''; 
+}
+/** hide left nav arrow for 1st page */
+.my-pagination /deep/ .ngx-pagination .pagination-previous.disabled span {
+  display: none;
 }

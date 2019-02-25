@@ -1,5 +1,3 @@
-<!-- <table> -->
-<!-- <thead> -->
 <div>
   <div class="container">
     <span class="tweetCol">Tweet</span>
@@ -9,18 +7,16 @@
     <span class="tweetCol">Hashtags</span>
     <span class="tweetCol">Date</span>
   </div>
-  <!-- </thead> -->
-  <!-- <tbody> -->
   <div
     *ngFor="
       let tweet of (fetchedTweets
         | paginate
           : {
-              id: 'hashtagSearch',
-              itemsPerPage: maxPage,
-              currentPage: currentPage
+              id: 'hashtag_search',
+              itemsPerPage: 10,
+              currentPage: p
             });
-      let idn = index
+      let i = index
     "
     class="container"
   >
@@ -29,9 +25,14 @@
     <span class="">{{ tweet.replies || "-" }}</span>
     <span class="">{{ tweet.retweets || "-" }}</span>
     <span class="">{{ formatTags(tweet.hashtags) || "-" }}</span>
-    <span class="">{{ tweet.date || "-" }}</span>
+    <span class="">{{tweet.date.split(' - ')[1] | date:'MMM d, y'}}</span>
   </div>
 </div>
-
-<!-- </tbody> -->
-<!-- </table> -->
+<pagination-controls
+  class="my-pagination"
+  id="hashtag_search"
+  (pageChange)="p = $event"
+  previousLabel="<"
+  nextLabel=">"
+  autoHide="true"
+></pagination-controls>
