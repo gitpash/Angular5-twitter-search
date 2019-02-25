@@ -1,21 +1,25 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
-import { HashtagComponent } from "./hashtag/hashtag.component";
-import { UserComponent } from "./user/user.component";
-
-const HASHTAG_TITLE = "Hashtag";
+import { SearchTemplateComponent } from "./search-template/search-template.component";
+import { HASHTAG, USER } from "./constants";
 
 const routes: Routes = [
-  { path: "", redirectTo: "/hashtag", pathMatch: "full" },
+  { path: "", redirectTo: `/${HASHTAG}`, pathMatch: "full" },
   {
-    path: "hashtag",
-    component: HashtagComponent,
+    path: HASHTAG,
+    component: SearchTemplateComponent,
     data: {
-      title: HASHTAG_TITLE
+      title: HASHTAG
     }
   },
-  { path: "user", component: UserComponent }
+  {
+    path: USER,
+    component: SearchTemplateComponent,
+    data: {
+      title: USER
+    }
+  }
 ];
 
 @NgModule({

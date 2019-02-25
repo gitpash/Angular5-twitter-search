@@ -1,0 +1,7 @@
+<div class="wrapper">
+  <app-search
+    (inputChange)="inputSearch($event)"
+    title="{{ title }}"
+  ></app-search>
+  <app-tweets-table [fetchedTweets]="allTweets"></app-tweets-table>
+</div>

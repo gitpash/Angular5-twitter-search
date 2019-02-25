@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { Subject } from "rxjs";
 import { switchMap, debounceTime, distinctUntilChanged } from "rxjs/operators";
 import { NgxSpinnerService } from "ngx-spinner";
@@ -6,14 +7,16 @@ import { TweetsService } from "../tweets.service";
 import { Tweet } from "../types";
 
 @Component({
-  selector: "app-hashtag",
-  templateUrl: "./hashtag.component.html",
-  styleUrls: ["./hashtag.component.scss"]
+  selector: "app-search-template",
+  templateUrl: "./search-template.component.html",
+  styleUrls: ["./search-template.component.scss"]
 })
-export class HashtagComponent implements OnInit {
+export class SearchTemplateComponent implements OnInit {
+  title: string = "";
   allTweets: Tweet[] = [];
 
   constructor(
+    private route: ActivatedRoute,
     private tweetsService: TweetsService,
     private spinner: NgxSpinnerService
   ) {}
@@ -24,7 +27,13 @@ export class HashtagComponent implements OnInit {
     this.searchSubj.next(query);
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    /** set class property onInit for searchTemplate */
+    this.route.data.subscribe(({ title }) => {
+      this.title = title;
+    });
+
+    /** create pipe for query tweets */
     this.searchSubj
       .pipe(
         debounceTime(300), // default debounce
@@ -36,14 +45,21 @@ export class HashtagComponent implements OnInit {
           }
           /** start spinner after debounce */
           this.spinner.show();
-          return this.tweetsService.getTweetsByHashtag(query, 'hashtag');
+          return this.tweetsService.getTweetsByHashtag(query, this.title);
         })
       )
-      .subscribe(tweets => {
-        /** spinner stop on response */
-        this.spinner.hide();
+      .subscribe(
+        tweets => {
+          /** spinner stop on response */
+          this.spinner.hide();
 
-        this.allTweets = tweets;
-      });
+          this.allTweets = tweets;
+        },
+        error => {
+          /** spinner stop on fail */
+          this.spinner.hide();
+          this.allTweets = [];
+        }
+      );
   }
 }

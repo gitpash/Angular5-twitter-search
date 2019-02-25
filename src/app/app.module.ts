@@ -6,20 +6,16 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { HashtagComponent } from "./hashtag/hashtag.component";
-import { UserComponent } from "./user/user.component";
 import { SearchComponent } from "./search/search.component";
 import { TweetsTableComponent } from "./tweets-table/tweets-table.component";
-import { PaginationComponent } from "./pagination/pagination.component";
+import { SearchTemplateComponent } from './search-template/search-template.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HashtagComponent,
-    UserComponent,
     SearchComponent,
     TweetsTableComponent,
-    PaginationComponent
+    SearchTemplateComponent
   ],
   imports: [
     BrowserModule,
