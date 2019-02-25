@@ -1,3 +1,4 @@
-<p>
-  user works!
-</p>
+<div class="user-wrapper">
+  <app-search (inputChange)="inputSearch($event)" title="User"></app-search>
+  <app-tweets-table [fetchedTweets]="allTweets"></app-tweets-table>
+</div>

@@ -36,7 +36,7 @@ export class HashtagComponent implements OnInit {
           }
           /** start spinner after debounce */
           this.spinner.show();
-          return this.tweetsService.getTweetsByHashtag(query);
+          return this.tweetsService.getTweetsByHashtag(query, 'hashtag');
         })
       )
       .subscribe(tweets => {

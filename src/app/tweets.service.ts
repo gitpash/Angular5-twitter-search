@@ -11,9 +11,12 @@ export class TweetsService {
 
   constructor(private http: HttpClient) {}
   /** GET all tweets by hashtag*/
-  getTweetsByHashtag(query: string): Observable<Tweet[]> {
-    return this.http.get<any>(
-      `${this.baseURL}/hashtags/${query}Python?pages_limit=3&wait=0`
+  getTweetsByHashtag(query: string, searchType: string): Observable<Tweet[]> {
+    const isHashtag = searchType === "hashtag";
+
+    return this.http.get<Tweet[]>(
+      // use ternary here due to only two options, better create separate methods if there are more
+      `${this.baseURL}/${isHashtag ? "hashtags" : "users"}/${query}?pages_limit=3&wait=0`
     );
   }
 }
