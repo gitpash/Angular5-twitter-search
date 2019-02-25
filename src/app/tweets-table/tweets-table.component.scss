@@ -1,12 +1,26 @@
+.tweet-table {
+  margin-top: 2em;
+  // padding: 1em;
+  background-color: white;
+}
+
 .container {
   display: grid;
-  grid-template-columns: 3fr 1fr 1fr 1fr 3fr 2fr;
-  grid-template-rows: auto;
-  grid-column-gap: 2em;
+  grid-template-columns: 5fr 1fr 1fr 1fr 3fr 3fr;
+  grid-template-rows: 1em;
+  grid-column-gap: 3em;
+  border-bottom: 1px solid lightgray;
+  padding: 1em;
+  margin: 0 1em;
+
+  &.tweets {
+    grid-template-rows: 3em;
+    overflow: hidden;
+    word-break: break-all;
+  }
 
   span {
-    text-align: center;
-    overflow: hidden;
+    text-align: left;
     min-width: 0;
   }
 }
@@ -15,8 +29,8 @@
 .my-pagination /deep/ .ngx-pagination .pagination-previous a::before,
 .my-pagination /deep/ .ngx-pagination .pagination-previous.disabled::before,
 .my-pagination /deep/ .ngx-pagination .pagination-next a::after,
-.my-pagination /deep/ .ngx-pagination .pagination-next.disabled::after { 
-  content: ''; 
+.my-pagination /deep/ .ngx-pagination .pagination-next.disabled::after {
+  content: "";
 }
 /** hide left nav arrow for 1st page */
 .my-pagination /deep/ .ngx-pagination .pagination-previous.disabled span {

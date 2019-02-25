@@ -1,8 +1,10 @@
-<label for="search">{{ title }}</label>
-<input
-  #search
-  id="search"
-  class="input-search"
-  placeholder="Search by Hashtag"
-  (keyup)="onInput($event)"
-/>
+<div class="search-wrapper">
+  <label class="search-label" for="search">{{ searchTitle }} search</label>
+  <input
+    #search
+    id="search"
+    class="input-search"
+    placeholder="Search by {{ searchTitle }}"
+    (keyup)="onInput($event)"
+  />
+</div>

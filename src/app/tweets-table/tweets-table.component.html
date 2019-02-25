@@ -1,4 +1,4 @@
-<div>
+<div class="tweet-table" *ngIf="fetchedTweets.length">
   <div class="container">
     <span class="tweetCol">Tweet</span>
     <span class="tweetCol">Likes</span>
@@ -18,21 +18,21 @@
             });
       let i = index
     "
-    class="container"
+    class="container tweets"
   >
     <span class="">{{ formatTweets(tweet.text) || "-" }}</span>
     <span class="">{{ tweet.likes || "-" }}</span>
     <span class="">{{ tweet.replies || "-" }}</span>
     <span class="">{{ tweet.retweets || "-" }}</span>
     <span class="">{{ formatTags(tweet.hashtags) || "-" }}</span>
-    <span class="">{{tweet.date.split(' - ')[1] | date:'MMM d, y'}}</span>
+    <span class="">{{ tweet.date.split(" - ")[1] | date: "MMM d, y" }}</span>
   </div>
+  <pagination-controls
+    class="my-pagination"
+    id="hashtag_search"
+    (pageChange)="p = $event"
+    previousLabel="<"
+    nextLabel=">"
+    autoHide="true"
+  ></pagination-controls>
 </div>
-<pagination-controls
-  class="my-pagination"
-  id="hashtag_search"
-  (pageChange)="p = $event"
-  previousLabel="<"
-  nextLabel=">"
-  autoHide="true"
-></pagination-controls>
