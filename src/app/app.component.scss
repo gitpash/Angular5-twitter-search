@@ -1,10 +1,17 @@
+.main-title {
+  text-align: left;
+  font-size: 1em;
+  font-weight: 200;
+  margin-bottom: 2em;
+}
+
 .nav-link {
-    margin: 1em 0;
-    padding: 0.5em;
-    text-decoration: none;
-    color: black;
-    &.is-active {
-        color: darken(lightblue, 20%);
-        background-color: lighten(lightgrey, 10%);
-    }
+  margin: 1em 0;
+  padding: 0.5em;
+  text-decoration: none;
+  color: black;
+  &.is-active {
+    color: darken(lightblue, 20%);
+    background-color: lighten(lightgrey, 10%);
+  }
 }

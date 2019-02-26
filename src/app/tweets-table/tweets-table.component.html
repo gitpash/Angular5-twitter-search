@@ -1,4 +1,4 @@
-<div  *ngIf="fetchedTweets.length" class="tweet-table">
+<div *ngIf="fetchedTweets.length" class="tweet-table">
   <div class="container">
     <span class="tweetCol">Tweet</span>
     <span class="tweetCol">Likes</span>
@@ -12,7 +12,6 @@
       let tweet of (fetchedTweets
         | paginate
           : {
-              id: 'hashtag_search',
               itemsPerPage: 10,
               currentPage: p
             });
@@ -20,16 +19,15 @@
     "
     class="container tweets"
   >
-    <span class="">{{ formatTweets(tweet.text) || "-" }}</span>
+    <span class="">{{ formatTweets(tweet.text) }}</span>
     <span class="">{{ tweet.likes || "-" }}</span>
     <span class="">{{ tweet.replies || "-" }}</span>
     <span class="">{{ tweet.retweets || "-" }}</span>
-    <span class="">{{ formatTags(tweet.hashtags) || "-" }}</span>
+    <span class="">{{ formatTags(tweet.hashtags) }}</span>
     <span class="">{{ tweet.date.split(" - ")[1] | date: "MMM d, y" }}</span>
   </div>
   <pagination-controls
     class="my-pagination"
-    id="hashtag_search"
     (pageChange)="p = $event"
     previousLabel="<"
     nextLabel=">"
