@@ -5,3 +5,12 @@
   ></app-search>
   <app-tweets-table [fetchedTweets]="allTweets"></app-tweets-table>
 </div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="grey"
+  type="ball-scale-multiple"
+>
+  <p style="color: grey">Loading tweets...</p>
+</ngx-spinner>

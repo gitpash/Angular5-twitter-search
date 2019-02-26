@@ -3,9 +3,8 @@ import { ActivatedRoute } from "@angular/router";
 import { Subject } from "rxjs";
 import { switchMap, debounceTime, distinctUntilChanged } from "rxjs/operators";
 import { NgxSpinnerService } from "ngx-spinner";
-import { TweetsService } from "../tweets.service";
+import { TweetsService } from "../services/tweets.service";
 import { Tweet } from "../types";
-
 @Component({
   selector: "app-search-template",
   templateUrl: "./search-template.component.html",

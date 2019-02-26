@@ -1,16 +1,17 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { NgxPaginationModule } from "ngx-pagination";
 
-import { TweetsTableComponent } from './tweets-table.component';
+import { TweetsTableComponent } from "./tweets-table.component";
 
-describe('TweetsTableComponent', () => {
+describe("TweetsTableComponent", () => {
   let component: TweetsTableComponent;
   let fixture: ComponentFixture<TweetsTableComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TweetsTableComponent ]
-    })
-    .compileComponents();
+      declarations: [TweetsTableComponent],
+      imports: [NgxPaginationModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +20,7 @@ describe('TweetsTableComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

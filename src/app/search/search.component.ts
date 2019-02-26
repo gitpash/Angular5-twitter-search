@@ -24,7 +24,7 @@ export class SearchComponent implements OnInit {
     this.inputChange.emit(event.target.value);
   }
 
-  capitalize(str: string): string {
+  capitalize(str: string = ""): string {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 }

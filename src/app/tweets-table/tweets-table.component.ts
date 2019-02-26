@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-
+import { Tweet } from "../types";
 @Component({
   selector: "app-tweets-table",
   templateUrl: "./tweets-table.component.html",
@@ -9,19 +9,19 @@ export class TweetsTableComponent implements OnInit {
   /** pagination */
   p: number = 1;
 
-  @Input() fetchedTweets: [];
+  @Input() fetchedTweets: Tweet[] = [];
 
   constructor() {}
 
   ngOnInit() {}
 
-  formatTweets(tweet: string) {
+  formatTweets(tweet: string = "") {
     if (tweet.length < 50) return tweet;
 
     return `${tweet.substr(0, 50)}...`;
   }
 
-  formatTags(tags: string[]) {
+  formatTags(tags: string[] = []) {
     if (tags.length <= 2) {
       return tags.length ? tags : "-";
     }
