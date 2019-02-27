@@ -3,6 +3,10 @@ import { ActivatedRoute } from "@angular/router";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { NgxPaginationModule } from "ngx-pagination";
 import { of } from "rxjs";
+import {
+  HttpClientTestingModule,
+  HttpTestingController
+} from "@angular/common/http/testing";
 
 import { SearchTemplateComponent } from "./search-template.component";
 import { SearchComponent } from "../search/search.component";
@@ -20,6 +24,8 @@ describe("SearchTemplateComponent", () => {
       title: "Hashtag"
     })
   };
+  let service: TweetsService;
+  let mockHttpClient: HttpTestingController;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -28,7 +34,7 @@ describe("SearchTemplateComponent", () => {
         SearchComponent,
         TweetsTableComponent
       ],
-      imports: [NgxSpinnerModule, NgxPaginationModule],
+      imports: [NgxSpinnerModule, NgxPaginationModule, HttpClientTestingModule],
       providers: [
         { provide: TweetsService, useValue: mockTweetsService },
         { provide: ActivatedRoute, useValue: mockRoute }
@@ -40,9 +46,17 @@ describe("SearchTemplateComponent", () => {
     fixture = TestBed.createComponent(SearchTemplateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+
+    service = TestBed.get(TweetsService);
+    mockHttpClient = TestBed.get(HttpTestingController);
   });
 
   it("should create", () => {
     expect(component).toBeDefined();
   });
+
+  it("should have proper title from route onInit", () => {
+    expect(component.title).toBe("Hashtag");
+  });
+
 });

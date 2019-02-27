@@ -19,7 +19,6 @@ export class SearchComponent implements OnInit {
   }
 
   onInput(event: any): void {
-    console.log(event.target.value);
     // emitting event into parent
     this.inputChange.emit(event.target.value);
   }
