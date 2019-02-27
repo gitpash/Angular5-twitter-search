@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Tweet } from "../types";
+import { HASHTAG } from "../constants";
 
 @Injectable({
   providedIn: "root"
@@ -12,11 +13,13 @@ export class TweetsService {
   constructor(private http: HttpClient) {}
   /** GET all tweets by hashtag*/
   getTweetsByHashtag(query: string, searchType: string): Observable<Tweet[]> {
-    const isHashtag = searchType === "hashtag";
+    const isHashtag = searchType === HASHTAG;
 
     return this.http.get<Tweet[]>(
       // use ternary here due to only two options, better create separate methods if there are more
-      `${this.baseURL}/${isHashtag ? "hashtags" : "users"}/${query}?pages_limit=3&wait=0`
+      `${this.baseURL}/${
+        isHashtag ? "hashtags" : "users"
+      }/${query}?pages_limit=3&wait=0`
     );
   }
 }

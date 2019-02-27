@@ -11,6 +11,6 @@ describe('TweetsService', () => {
 
   it('should be created', () => {
     const service: TweetsService = TestBed.get(TweetsService);
-    expect(service).toBeTruthy();
+    expect(service).toBeDefined();
   });
 });

@@ -3,7 +3,6 @@ import { ActivatedRoute } from "@angular/router";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { NgxPaginationModule } from "ngx-pagination";
 import { of } from "rxjs";
-import { HttpClientModule } from "@angular/common/http";
 
 import { SearchTemplateComponent } from "./search-template.component";
 import { SearchComponent } from "../search/search.component";
@@ -44,6 +43,6 @@ describe("SearchTemplateComponent", () => {
   });
 
   it("should create", () => {
-    expect(component).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

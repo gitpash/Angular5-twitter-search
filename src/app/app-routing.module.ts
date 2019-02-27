@@ -4,7 +4,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { SearchTemplateComponent } from "./search-template/search-template.component";
 import { HASHTAG, USER } from "./constants";
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: "", redirectTo: `/${HASHTAG}`, pathMatch: "full" },
   {
     path: HASHTAG,
