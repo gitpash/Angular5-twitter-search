@@ -26,6 +26,6 @@ export class TweetsTableComponent implements OnInit {
       return tags.length ? tags : "-";
     }
 
-    return tags.slice(0, 1);
+    return tags.slice(0, 2);
   }
 }

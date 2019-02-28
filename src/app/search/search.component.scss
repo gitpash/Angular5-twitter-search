@@ -1,11 +1,12 @@
 .input-search {
   background-image: url("../../svg/baseline-search-24px.svg");
+  opacity: 0.5;
   background-repeat: no-repeat;
   background-position: center right;
-  background-size: 1.5em;
-  width: 20%; // could be not perfect for mobile
+  background-size: 1.3em;
+  width: 15em;
   height: 2em;
-  font-size: 1em;
+  font-size: 0.8em;
 }
 
 .search-label {

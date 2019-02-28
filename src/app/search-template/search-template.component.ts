@@ -1,7 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { Subject } from "rxjs";
-import { switchMap, debounceTime, distinctUntilChanged } from "rxjs/operators";
+import { Subject, of, empty } from "rxjs";
+import {
+  switchMap,
+  debounceTime,
+  distinctUntilChanged,
+  catchError
+} from "rxjs/operators";
 import { NgxSpinnerService } from "ngx-spinner";
 import { TweetsService } from "../services/tweets.service";
 import { Tweet } from "../types";
@@ -20,7 +25,7 @@ export class SearchTemplateComponent implements OnInit {
     private spinner: NgxSpinnerService
   ) {}
 
-  private searchSubj = new Subject<string>();
+  public searchSubj = new Subject<string>();
 
   inputSearch(query: string): void {
     this.searchSubj.next(query);
@@ -36,22 +41,30 @@ export class SearchTemplateComponent implements OnInit {
     this.searchSubj
       .pipe(
         debounceTime(300), // default debounce
-        distinctUntilChanged(),
+        distinctUntilChanged(), // ignore same input as prev
         switchMap((query: string) => {
           if (!query) {
             this.allTweets = [];
-            return;
+            /** need to return iterable here for empty str */
+            return of([]);
           }
           /** start spinner after debounce */
           this.spinner.show();
-          return this.tweetsService.getTweetsByHashtag(query, this.title);
+          return this.tweetsService.getTweetsByHashtag(
+            query,
+            this.title,
+            this.spinner
+          );
+        }),
+        catchError(e => {
+          this.spinner.hide();
+          return empty();
         })
       )
       .subscribe(
         tweets => {
           /** spinner stop on response */
           this.spinner.hide();
-
           this.allTweets = tweets;
         },
         error => {
