@@ -1,6 +1,6 @@
 ## Intro
 
-Attempting to write simple twitterAPi consumer for interview purposes and also for learning Angular with no previous experience in that framework.
+Attempting to write simple twitterAPi consumer for interview purposes and also for learning Angular with no previous experience with that framework.
 
 The application provides access to the custom twitter API with possibilities to fetch tweets by #hashtag and username.
 
